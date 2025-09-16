@@ -1,0 +1,78 @@
+# ---- OS cruft ----
+.DS_Store
+Thumbs.db
+.Trash-*
+
+# ---- Editors ----
+*~
+*.swp
+*.swo
+*.swx
+.netrwhist
+.nvr
+*.tmp
+*.orig
+*.rej
+
+# ---- Neovim/Vim specifics ----
+# Packer's generated file
+**/plugin/packer_compiled.lua
+# Do please save lazy.nvim lock-file if it exists
+!**/lazy-lock.json
+
+# ---- Shell histories & zsh-artifacts ----
+.zsh_history
+.bash_history
+.python_history
+.lesshst
+.sqlite_history
+.zcompdump*
+.zsh_sessions
+
+# ---- oh-my-zsh ----
+.oh-my-zsh/
+
+# ---- direnv ----
+.direnv/
+.envrc
+
+# ---- Secrets/keys ----
+**/id_rsa
+**/id_dsa
+**/id_ecdsa
+**/id_ed25519
+**/id_ed25519_sk
+**/id_ecdsa_sk
+**/id_*_old
+*.pem
+*.key
+*.p12
+*.pfx
+*.age
+*.gpg
+*.asc
+# GnuPG
+**/.gnupg/openpgp-revocs.d/
+**/.gnupg/private-keys-v1.d/
+
+# ---- Caches ----
+.cache/
+**/Cache/
+**/cache/
+**/__pycache__/
+*.pyc
+
+# ---- Dev/tools ----
+.vscode/
+.cursor/
+.idea/
+node_modules/
+dist/
+build/
+target/
+.venv/
+venv/
+
+# ---- Misc desktop ----
+.fehbg
+
