@@ -1,7 +1,19 @@
 -- lua/custom/plugins/lsp.lua
 return {
-  { 'williamboman/mason.nvim', config = true },
-  { 'williamboman/mason-lspconfig.nvim', dependencies = { 'neovim/nvim-lspconfig' }, opts = {} },
+  { 'mason-org/mason.nvim', opts = {} },
+
+  -- Mason <-> LSP + auto-enable of installed servers
+  {
+    'mason-org/mason-lspconfig.nvim',
+    dependencies = { 'neovim/nvim-lspconfig' },
+    opts = {
+      -- Install automatically
+      ensure_installed = { 'lua_ls', 'ts_ls' },
+      -- automatic_enable = true is default: mason-lspconfig runs vim.lsp.enable()
+    },
+  },
+
+  -- Completion
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -32,15 +44,30 @@ return {
       }
     end,
   },
-  -- Minimal LSP bootstrap (ex: lua_ls + tsserver)
+
+  -- Nvim LSP: definie config via vim.lsp.config (not lspconfig.setup)
   {
     'neovim/nvim-lspconfig',
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local lspconfig = require 'lspconfig'
-      lspconfig.lua_ls.setup { capabilities = capabilities }
-      lspconfig.ts_ls.setup { capabilities = capabilities }
-      -- lägg fler servers efter behov
+      local caps = require('cmp_nvim_lsp').default_capabilities()
+
+      -- 1) Set *default* for all LSP-clients
+      vim.lsp.config('*', {
+        capabilities = caps,
+      })
+
+      -- 2) Per-server config (exempel: lua_ls)
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { 'vim' } },
+            workspace = { checkThirdParty = false },
+          },
+        },
+      })
+
+      -- OBS: Don't call vim.lsp.enable() here if you let mason-lspconfig
+      -- auto-enable, or you risk double-clients.
     end,
   },
 }
