@@ -1,5 +1,4 @@
 -- lua/pontus/keymaps.lua
--- Ledare: Kickstart använder space
 vim.g.mapleader = ' '
 
 vim.g.maplocalleader = ' '
@@ -8,7 +7,7 @@ local map = vim.keymap.set
 local silent = { silent = true, noremap = true }
 
 ----------------------------------------------------
--- ~~ Set in ~/.config/vim/shared-maps.vim ~~ --
+-- ~~ These are set in ~/.config/vim/shared-maps.vim ~~ --
 
 --map('i', 'jk', '<Esc>', { noremap = true })
 --map('n', '<Tab>', ':bnext<CR>', silent)
@@ -21,6 +20,13 @@ local silent = { silent = true, noremap = true }
 
 -- ~~ END Set in ~/.config/vim/shared-maps.vim ~~ --
 ----------------------------------------------------
+
+-- Yank to system clipboard
+map({ 'n', 'v' }, '<leader>y', '"+y', vim.tbl_extend('force', silent, { desc = 'Yank → clipboard' }))
+map('n', '<leader>Y', '"+Y', vim.tbl_extend('force', silent, { desc = 'Yank line → clipboard' }))
+-- Paste from system clipboard
+map({ 'n', 'v' }, '<leader>p', '"+p', vim.tbl_extend('force', silent, { desc = 'Paste ← clipboard' }))
+map('n', '<leader>P', '"+P', vim.tbl_extend('force', silent, { desc = 'Paste before ← clipboard' }))
 
 -- Quick save
 map('n', '<leader>w', ':w<CR>', silent)
