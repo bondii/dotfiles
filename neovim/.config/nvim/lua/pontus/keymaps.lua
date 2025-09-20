@@ -35,6 +35,8 @@ map('n', '<leader>w', ':w<CR>', silent)
 map('n', 't', 'o<Esc>k', silent)
 map('n', 'T', 'O<Esc>j', silent)
 
+map('n', '<leader>e', ':Neotree toggle<CR>', vim.tbl_extend('force', silent, { desc = 'Filetree' }))
+
 -- Reload config (F2)
 map('n', '<F2>', function()
   vim.cmd 'source $MYVIMRC'

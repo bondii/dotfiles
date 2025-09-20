@@ -53,4 +53,4 @@ fi
 
 # Created by `pipx` on 2025-09-20 11:55:32
 export PATH="$PATH:/home/pontus/.local/bin"
-eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
